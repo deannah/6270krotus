@@ -1,9 +1,16 @@
+"""
+Using Wiring-x86 to power motor A which turns the left wheel forward.
+
+Hitting Ctrl-C stops motor.
+"""
+#!usr/bin/python
+
 
 from wiringx86 import GPIOEdison as GPIO
 import time
 
 gpio = GPIO(debug=False)
-pin = 9
+pin = 3
 pin2 = 12
 fastness = 100
 delta = 5
