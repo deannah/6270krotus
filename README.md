@@ -29,3 +29,19 @@ Pin: 2
 Pin: 4
 
 #####Future IR something
+
+### Code Structure
+
+##### RobotModel
+
+Estimates robot's position, theta, and velocity.
+
+##### GlobalController
+
+Keeps track of list of tasks, sets LocalController into motion
+
+##### LocalController
+
+Executes current task, whether that be navigate to a point (drive and turn), operate servo, activate IR sensor...
+
+Controlled by GlobalController, makes use of RobotModel for estimates.
