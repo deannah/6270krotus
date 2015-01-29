@@ -46,6 +46,8 @@ class RobotModel:
 		print "Gyro reads: ", str(value)
 
 	def getVPSdata(self):
+		# team #, x, y, theta, and time, it's a function we'll call
+		# this'll be a thread running in the background, ?
 		#TODO
 		pass
 
