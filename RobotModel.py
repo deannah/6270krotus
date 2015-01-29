@@ -13,23 +13,36 @@ Todo list:
 - figure out how data is used to calculate position/etc.
 
 """
+import mraa
+
 class RobotModel:
 	def __init__(self):
 		self.position = (0.0,0.0)
 		self.theta = 0.0
 		self.velocity = 0.0
+		self.gyro = mraa.Aio(0)
+		self.left = mraa.Gpio(2)
+		self.right = mraa.Gpio(4)
+		
 
 	def getGyroData(self):
-		#TODO
-		pass
+		# pin A0
+		value = self.gyro.read()
+		print "Gyro reads: ", str(value)
 
 	def getVPSdata(self):
 		#TODO
 		pass
 
-	def getBumpData(self):
-		#TODO
-		pass
+	def getLeftBumpData(self):
+		# pin 2
+		value = left.read()
+		print "Left bump reads: ", str(value)
+
+	def getRightBumpData(self):
+		# pin 4
+		value = right.read()
+		print "Right bump reads: ", str(value)
 
 	def step(self):
 		# Essentially, utilize gathered data to update values
