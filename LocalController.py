@@ -15,10 +15,12 @@ Maybe thinking... AbstractLocalController with NavigateController and CollectCon
 On second thought, maybe I won't bother doing an abstract class.
 """
 from pid import *
+from RobotController import RobotController
 
 class LocalController:
 	def __init__(self, model):
 		self.model = model
+		self.robot = RobotController()
 
 	def navigate(self, goal):
 		# use default pid. I'm assuming this is how GlobalController
@@ -58,6 +60,7 @@ class LocalController:
 		#TODO
 		pass
 	def turnTo(self,angle,pid):
+		# I'm not sure if we can actually turn in place. Good luck.
 		myTheta=self.model.getTheta()
 		cross = cos(angle) * sin(myTheta) - sin(angle) * cos(myTheta)
 		time=getTime()
@@ -77,19 +80,9 @@ class LocalController:
 	def release(self):
 		# Complete the action of releasing the ping pong balls
 		# Really just involves operating servo2
-		self.openDoor()
+		self.robot.openDoor()
 		#TODO some kind of waiting
-		self.closeDoor()
-
-	def openDoor(self):
-		# rotate servo2 to open door, figure out reasonable angle later
-		#TODO
-		pass
-
-	def closeDoor(self):
-		# rotate servo2 to close door, figure out angle later
-		#TODO
-		pass
+		self.robot.closeDoor()
 
 """class AbstractLocalController:
 	def __init__(self, model):
