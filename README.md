@@ -20,15 +20,21 @@ Currently using mraa library, robot successfully drives (which at this point mea
 
 Pin: Analog A0
 
-#####Bump Sensor Left
+gyro.read() returns 50, 51, or 52 regardless of what the robot is doing.
+gyro.getBit() returns 10 also regardless of what robot is doing. I'm not sure what's going wrong here.
 
-Pin: 2
+#####Bump Sensors
 
-#####Bump Sensor Right
+Pin (Left): 2
 
-Pin: 4
+Pin (Right): 4
 
-#####Future IR something
+Can do bump.read() to get 0/1 whether it is being pressed.
+Can also set bump.isr to call a function on an edge. This triggers nicely when the sensor is pressed but when you stop pressing the sensor it triggers several times, so that'll be something to watch out for.
+
+Also the left bump sensor seems to be a little derpy and occasionally decides it is being pressed when it is not.
+
+#####Future IR something?
 
 ### Code Structure
 
