@@ -32,6 +32,12 @@ Pin: 4
 
 ### Code Structure
 
+##### Setup
+
+Initialize the RobotModel, create the GlobalController, this will probably control starting the robot (waiting for VPS data to be accurate, maybe by having the model do something?) and stopping the robot (timer), though stopping might be up to GlobalController...
+
+Depending on GlobalController implementation, may have to do some work to set it up.
+
 ##### RobotModel
 
 Estimates robot's position, theta, and velocity.
