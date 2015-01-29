@@ -14,12 +14,23 @@ Maybe thinking... AbstractLocalController with NavigateController and CollectCon
 
 On second thought, maybe I won't bother doing an abstract class.
 """
+from pid import *
 
 class LocalController:
 	def __init__(self, model):
 		self.model = model
 
+	def navigate(self, goal):
+		# use default pid. I'm assuming this is how GlobalController
+		# will wind up calling navigate.
+		ki = 0 #TODO
+		kd = 0 #TODO
+		kp = 0 #TODO
+		pid = PID(ki, kd, kp)
+		self.navigate(goal, pid)
+
 	def navigate(self, goal, pid):
+		# prolly this should return a bool whether it failed or succeeded, but for now you can assume no obstacles probably.
 		(myX,myY)=self.model.getPosition()
 		myTheta=self.model.getTheta()
 		dx=goal[0]-myX

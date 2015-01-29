@@ -6,6 +6,7 @@ Heavily based upon sample RRT code provided by Ariel Wexler
 """
 
 from random import random
+from math import sqrt
 
 class TreeNode:
 	def __init__(self):

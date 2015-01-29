@@ -9,20 +9,32 @@ Keeps track of list of tasks. Uses LocalController to actually achieve tasks. Ap
 hmmm might want a separate FieldModel...
 """
 from LocalController import *
+from RRT import *
 
 class GlobalController:
-	def __init__(self, model):
-		self.model = model
-		self.localController = LocalController(model)
+	def __init__(self, robotModel, fieldModel):
+		self.robotModel = robotModel
+		self.fieldModel = fieldModel
+		self.localController = LocalController(robotModel)
 
 	def execute(self):
-		# maybe it also has to be in charge of starting, for now assume not
+		# Execute called when competition begins.
+		#TODO this prolly needs a time limit or some kind of stop condition?
+		#prolly timer here and then loop it from setup?
 		# navigate to closest dispenser
 			#find closest dispenser
+		dispenser = (0, 0) #assume dispenser is accurate, TODO
 			#determine path, navigate along it.
+		rrt = RRT(self.fieldModel)
+		disPath = rrt.plan(self.robotModel.getPosition, dispenser, 100)
+		for point in disPath.reverse():
+			self.localController.navigate(point)
 		# collect balls
 		localController.collect()
 		# navigate to goal
+		goal = (0, 0) # lol what is goal TODO
+		goalPath = rrt.plan(self.robotModel.getPosition, goal, 100)
+		for point in goalPath.reverse():
+			self.localController.navigate(point)
 		# release balls
 		localController.release()
-		#TODO
