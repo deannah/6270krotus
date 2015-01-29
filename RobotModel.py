@@ -36,12 +36,12 @@ class RobotModel:
 
 	def getLeftBumpData(self):
 		# pin 2
-		value = left.read()
+		value = self.left.read()
 		print "Left bump reads: ", str(value)
 
 	def getRightBumpData(self):
 		# pin 4
-		value = right.read()
+		value = self.right.read()
 		print "Right bump reads: ", str(value)
 
 	def step(self):
