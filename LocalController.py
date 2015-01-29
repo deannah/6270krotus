@@ -19,14 +19,42 @@ class LocalController:
 	def __init__(self, model):
 		self.model = model
 
-	def navigate(self, goal):
+	def navigate(self, goal, pid):
+		(myX,myY)=self.model.getPosition()
+		myTheta=self.model.getTheta()
+		dx=goal[0]-myX
+		dy=goal[1]-myY
+		norm=sqrt(dx*dx+dy*dy)
+		dx/=norm
+		dy/=norm
+		cross=dx*sin(myTheta)-dy*cos(myTheta)
+		time=getTime()				#TODO
+		power=pid.update(-cross,time)
+		if(abs(cross)>0.5):
+			bias=0.0
+		else:
+			bias=0.5
+		setRightMotor(bias+power)
+		setLeftMotor(bias-power)
+		(myX,myY)=self.model.getPosition()
+		dist=sqrt((goal[0]-myX)**2+(goal[1]-myY)**2)
+		if(dist > 1):
+			self.navigate(goal,pid)
 		# goal in form (x, y, theta), probably
 		# this is where some PID control happens
 		# hopefully make use of some lower level code to set motors
 		# at each step remember to step the model so it updates...
 		#TODO
 		pass
-
+	def turnTo(self,angle,pid):
+		myTheta=self.model.getTheta()
+		cross = cos(angle) * sin(myTheta) - sin(angle) * cos(myTheta)
+		time=getTime()
+		power=pid.update(-cross,time)
+		if (abs(diff)>0.1):
+			setLeftMotor(power);		#TODO
+			setRightMotor(-power); 	#TODO
+			self.turnTo(angle)
 	def collect(self):
 		# Complete the action of collecting ping pong balls
 		# Needs to activate IR sensor, and then activate servo1
