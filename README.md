@@ -48,12 +48,20 @@ Depending on GlobalController implementation, may have to do some work to set it
 
 Estimates robot's position, theta, and velocity.
 
+##### FieldModel
+
+Essentially keeps track of which points are passable and which are not. Need to figure out how to deal with hexagons and whether or not to hardcode inner hexagon. Ideally this would know where dispensers are which I'm guessing has to be hard coded? Maybe it'll also know where the goal is. It probably has to...
+
 ##### GlobalController
 
-Keeps track of list of tasks, sets LocalController into motion
+Keeps track of list of tasks, sets LocalController into motion, uses RRT for navigational choices.
+
+##### RRT
+
+Using Rapidly Exploring Random Tree to make paths to points and navigate the robot or something. I don't actually know exactly how this will be utilized by GlobalController yet.
 
 ##### LocalController
 
-Executes current task, whether that be navigate to a point (drive and turn), operate servo, activate IR sensor...
+Executes current task, whether that be navigate to a point (drive and turn), operate servo, activate IR...
 
 Controlled by GlobalController, makes use of RobotModel for estimates.
