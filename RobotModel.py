@@ -23,11 +23,11 @@ class RobotModel:
 		self.gyro = mraa.Aio(0)
 		self.left = mraa.Gpio(2)
 		self.right = mraa.Gpio(4)
-		
+		self.right.isr(mraa.EDGE_RISING, rightbump, rightbump)
 
 	def getGyroData(self):
 		# pin A0
-		value = self.gyro.read()
+		value = self.gyro.read() # number: 50, 51, 52 ...?
 		print "Gyro reads: ", str(value)
 
 	def getVPSdata(self):
@@ -36,6 +36,8 @@ class RobotModel:
 
 	def getLeftBumpData(self):
 		# pin 2
+		# self.left.read() returns bool 0 or 1 if pressed
+		# this one might be derpy...
 		value = self.left.read()
 		print "Left bump reads: ", str(value)
 
@@ -43,6 +45,10 @@ class RobotModel:
 		# pin 4
 		value = self.right.read()
 		print "Right bump reads: ", str(value)
+
+	def rightbump(self):
+		# theoretically triggered when right sensor bumped
+		print "Right bump just triggered"
 
 	def step(self):
 		# Essentially, utilize gathered data to update values

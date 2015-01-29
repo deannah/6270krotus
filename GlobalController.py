@@ -8,6 +8,8 @@ Keeps track of list of tasks. Uses LocalController to actually achieve tasks. Ap
 
 hmmm might want a separate FieldModel...
 """
+from LocalController import *
+
 class GlobalController:
 	def __init__(self, model):
 		self.model = model

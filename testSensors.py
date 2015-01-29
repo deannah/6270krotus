@@ -3,6 +3,7 @@ Testing out sensor data from robot model.
 """
 
 from RobotModel import *
+import time
 
 def testSensors(model):
 	model.getGyroData()
@@ -10,4 +11,11 @@ def testSensors(model):
 	model.getRightBumpData()
 
 model = RobotModel()
-testSensors(model)
+
+try:
+	while True:
+		testSensors(model)
+		time.sleep(.1)
+
+except KeyboardInterrupt:
+	print "Ending test session"
