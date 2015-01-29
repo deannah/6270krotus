@@ -15,16 +15,18 @@ Todo list:
 """
 import mraa
 
-class RobotModel:
-	def rightbump(args):
-		# called when right bump sensor activated
-		# also seems to get called several times in a row
-		# when you stop pressing, which is a thing.
-		print "Right bump just triggered"
+# I think these have to be defined outside of the class...
+def rightbump(args):
+	# called when right bump sensor activated
+	# also seems to get called several times in a row
+	# when you stop pressing, which is a thing.
+	print "Right bump just triggered"
 
-	def leftbump(args):
-		# called when left bump sensor activated
-		print "Left bump triggered"
+def leftbump(args):
+	# called when left bump sensor activated
+	print "Left bump triggered"
+
+class RobotModel:
 
 	def __init__(self):
 		self.position = (0.0,0.0)
