@@ -72,3 +72,7 @@ Using Rapidly Exploring Random Tree to make paths to points and navigate the rob
 Executes current task, whether that be navigate to a point (drive and turn), operate servo, activate IR...
 
 Controlled by GlobalController, makes use of RobotModel for estimates.
+
+##### PID
+
+Use PID to actually move the robot to a point. Cool.

@@ -23,7 +23,7 @@ class GlobalController:
 		#prolly timer here and then loop it from setup?
 		# navigate to closest dispenser
 			#find closest dispenser
-		dispenser = (0, 0) #assume dispenser is accurate, TODO
+		dispenser = (0, 0, 0) #assume dispenser is accurate, TODO
 			#determine path, navigate along it.
 		rrt = RRT(self.fieldModel)
 		disPath = rrt.plan(self.robotModel.getPosition, dispenser, 100)
@@ -32,7 +32,7 @@ class GlobalController:
 		# collect balls
 		localController.collect()
 		# navigate to goal
-		goal = (0, 0) # lol what is goal TODO
+		goal = (0, 0, 0) # lol what is goal TODO
 		goalPath = rrt.plan(self.robotModel.getPosition, goal, 100)
 		for point in goalPath.reverse():
 			self.localController.navigate(point)

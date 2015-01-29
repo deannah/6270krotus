@@ -11,4 +11,6 @@ globalController = GlobalController(robotModel)
 while not robotModel.getVPSdata():
 	#basically wait
 # Time to compete!
-globalController.execute()
+while True:
+	# I'm assuming we'll just keep repeating the loop until we run out of time.
+	globalController.execute()
