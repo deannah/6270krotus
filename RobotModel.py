@@ -15,7 +15,7 @@ Todo list:
 """
 import mraa
 
-# I think these have to be defined outside of the class...
+# The bump sensors are really derpy, these functions get called way more often than they should.
 def rightbump(args):
 	# called when right bump sensor activated
 	# also seems to get called several times in a row
@@ -37,19 +37,26 @@ class RobotModel:
 		self.left.isr(mraa.EDGE_RISING, leftbump, leftbump)
 		self.right = mraa.Gpio(4)
 		self.right.isr(mraa.EDGE_RISING, rightbump, rightbump)
+		self.time = 0
 
 	def getGyroData(self):
 		# pin A0
 		# Gyro currently reading 50, 51, or 52
 		# seemingly regardless of what robot is doing.
+		
 		value = self.gyro.read()
 		print "Gyro reads: ", str(value)
+		return value
 
 	def getVPSdata(self):
 		# team #, x, y, theta, and time, it's a function we'll call
 		# this'll be a thread running in the background, ?
 		#TODO
-		pass
+		x = 0.0
+		y = 0.0
+		theta = 0.0
+		time = 0.0
+		return (x, y, theta, time)
 
 	def getLeftBumpData(self):
 		# pin 2
@@ -69,7 +76,20 @@ class RobotModel:
 		# I'm guessing former. Gives estimate of position and velocity
 		# that controller will use
 		#TODO
-		pass
+		# call each of the getData methods, use that info to update
+		# estimates
+		x, y, theta, newTime = self.getVPSdata()
+		dT = newTime - self.time
+		self.time = newTime
+		self.x = x
+		self.y = y
+		self.theta = theta
+		gyroData = self.getGyroData() # I don't even know how to use the gyro data
+		# the updating could just happen in each of the getData methods?
+		# we should really compare an estimate based on what we told it
+		# to move and the position we actually wind up in? I guess maybe that happens in LocalController?
+		return dT #return change in time so LocalController can do math.
+		#maybe want to return other things too: dx, dy, dtheta...
 
 	def getPosition(self):
 		return self.position
