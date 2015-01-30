@@ -15,4 +15,4 @@ try:
 		time.sleep(2)
 		robot.stop()
 except KeyboardInterrupt:
-	robot.stop()
+	robot.off()

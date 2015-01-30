@@ -30,7 +30,10 @@ class Motor:
 	def stop(self):
 		self.brake.write(1)
 		self.m.write(0)
-		self.m.enable(False) #TODO should I do this?
+
+	def off(self):
+		self.stop()
+		self.m.enable(False)
 
 class Servo:
 	def __init__(self, pin):
@@ -40,36 +43,39 @@ class Servo:
 	def rotateLow(self):
 		#this assumes it is already high...
 		# might just want one rotate function? TODO
-		self.s.enable(True) #TODO still questioning enabling.
+		self.s.enable(True)
 		for i in range(2100, 700, -100):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
-		self.s.enable(False)
+		self.s.enable(False) #TODO mmmm should I disable now??
 
 	def rotateHigh(self):
 		self.s.enable(True)
 		for i in range(800, 2300, 100):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
-		self.s.enable(False)
+		self.s.enable(False) #TODO prolly shouldn't here...
 
 	def rotate(self, value):
 		self.s.enable(True)
 		# probably need to find current theta?
 		# basically mimic the above but from current to value
-		#TODO
+		#TODO this might be impossible....
 		pass
 
 class RobotController:
 	def __init__(self):
 		# set up the motors
-		self.left = Motor(3, 11, 12) #TODO did I switch?
+		self.left = Motor(3, 11, 12)
 		self.right = Motor(9, 8, 13)
 		# set up the servos
 		#self.arm = Servo(5) #TODO did I switch these pins?
 		#self.door = Servo(6)
 
 	def driveForward(self):
+		#This and driveBackward are probably unnecessary
+		#because we'll be driving left and right separately.
+		#TODO remove them or maybe rewrite them w/ bias
 		self.left.forward(.4)
 		self.right.forward(.4)
 
@@ -80,6 +86,11 @@ class RobotController:
 	def stop(self):
 		self.left.stop()
 		self.right.stop()
+
+	def off(self):
+		# meant for turning motors off
+		self.left.off()
+		self.right.off()
 
 	def openDoor(self):
 		# rotate servo to open door, releasing balls.
