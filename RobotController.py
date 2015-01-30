@@ -81,3 +81,8 @@ class RobotController:
 		# rotate servo to lower arm to catch balls.
 		#TODO
 		pass
+
+	def activateIR(self):
+		# turn on IR to activate dispensers
+		#TODO
+		pass
