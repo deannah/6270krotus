@@ -25,10 +25,9 @@ We'll have some function to call that will get VPS data. This will be team #, x,
 
 #####Gyro
 
-Pin: Analog A0
+Pin: Analog A2
 
-gyro.read() returns 50, 51, or 52 regardless of what the robot is doing.
-gyro.getBit() returns 10 also regardless of what robot is doing. I'm not sure what's going wrong here.
+gyro.read() returns 500 normally, goes to 0 when turning left and goes to 1000 when turning right.
 
 #####Bump Sensors
 
