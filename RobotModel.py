@@ -32,7 +32,7 @@ class RobotModel:
 		self.position = (0.0,0.0)
 		self.theta = 0.0
 		self.velocity = 0.0
-		self.gyro = mraa.Aio(0)
+		self.gyro = mraa.Aio(2)
 		self.left = mraa.Gpio(2)
 		self.left.isr(mraa.EDGE_RISING, leftbump, leftbump)
 		self.right = mraa.Gpio(4)
@@ -40,10 +40,8 @@ class RobotModel:
 		self.time = 0
 
 	def getGyroData(self):
-		# pin A0
-		# Gyro currently reading 50, 51, or 52
-		# seemingly regardless of what robot is doing.
-		
+		# pin A2
+		# Normal ~500, down to 0 when turn left, 1000 turn right
 		value = self.gyro.read()
 		print "Gyro reads: ", str(value)
 		return value

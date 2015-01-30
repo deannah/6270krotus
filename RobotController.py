@@ -30,6 +30,7 @@ class Motor:
 	def stop(self):
 		self.brake.write(1)
 		self.m.write(0)
+		self.brake.write(0)
 
 	def off(self):
 		self.stop()
