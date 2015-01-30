@@ -12,16 +12,23 @@ class Motor:
 	def __init__(self, pin, brake, direction):
 		self.m = mraa.Pwm(pin)
 		self.m.period_us(700)
+		self.m.enable(True)
 		self.brake = mraa.Gpio(brake)
 		self.brake.dir(mraa.DIR_OUT)
+		self.brake.write(0)
 		self.dir = mraa.Gpio(direction)
 		self.dir.dir(mraa.DIR_OUT)
 
-	def write(self, value):
-		self.m.enable(True) #TODO should this be in init?
+	def forward(self, value):
+		self.dir.write(1)
 		self.m.write(value)
 
-	def stop(self, value):
+	def backward(self, value):
+		self.dir.write(0)
+		self.m.write(value)
+
+	def stop(self):
+		self.brake.write(1)
 		self.m.write(0)
 		self.m.enable(False) #TODO should I do this?
 
@@ -59,8 +66,20 @@ class RobotController:
 		self.left = Motor(3, 11, 12) #TODO did I switch?
 		self.right = Motor(9, 8, 13)
 		# set up the servos
-		self.arm = Servo(5) #TODO did I switch these pins?
-		self.door = Servo(6)
+		#self.arm = Servo(5) #TODO did I switch these pins?
+		#self.door = Servo(6)
+
+	def driveForward(self):
+		self.left.forward(.4)
+		self.right.forward(.4)
+
+	def driveBackward(self):
+		self.left.backward(.4)
+		self.right.backward(.4)
+
+	def stop(self):
+		self.left.stop()
+		self.right.stop()
 
 	def openDoor(self):
 		# rotate servo to open door, releasing balls.
