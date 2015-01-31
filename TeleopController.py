@@ -17,15 +17,15 @@ class TeleopController:
 		data = int(data)
 		print data
 		if (data < 1240):		#2470 to 1250 bias, hopefully 10 to 1230 power 
-			self.power = (data - 620.0) / 610.0
-			if (abs(self.power) < .1):
+			self.power = (data - 450.0) / 610.0
+			if (abs(self.power) < .2):
 				self.power = 0.0
 			print self.power
 			self.execute('motor', [self.bias, self.power])
 		elif (data < 2480):
 			self.bias = (data - 1860.0) / 610.0
 			print self.bias
-			if (abs(self.bias) < .1):
+			if (abs(self.bias) < .2):
 				self.bias = 0.0
 			self.execute('motor', [self.bias, self.power])
 		elif (data == 2491):
@@ -37,7 +37,7 @@ class TeleopController:
 		elif (data == 2551):
 			self.execute('arm', 0)
 		elif (data == 2601):
-			self.robot.activateIR()
+			self.execute('ir', 0)
 		else:
 			print 'wtf, man'
 
