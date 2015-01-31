@@ -1,5 +1,6 @@
 
-from RobotController import * import socket
+from RobotController import *
+import socket
 
 class TeleopController:
 	def __init__(self, robot):
