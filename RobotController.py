@@ -57,12 +57,17 @@ class Servo:
 			time.sleep(.05)
 		self.s.enable(False) #TODO prolly shouldn't here...
 
-	def rotate(self, value):
+	def rotate(self, current, desired):
+		# rotates servo from current location to desired location
+		#current and desired should ideally be multiples of 100
 		self.s.enable(True)
-		# probably need to find current theta?
-		# basically mimic the above but from current to value
-		#TODO this might be impossible....
-		pass
+		step = 100
+		if (current>desired):
+			step*=-1
+		for i in range(current, desired, step):
+			self.s.pulsewidth_us(i)
+			time.sleep(.05)
+		self.enable(False)
 
 class InfraLed:
 	def __init__(self, pin):
