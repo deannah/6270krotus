@@ -15,29 +15,31 @@ class TeleopController:
 	def receive(self):
 		data, addr = self.s.recvfrom(1024)
 		data = int(data)
+		print data
 		if (data < 1240):		#2470 to 1250 bias, hopefully 10 to 1230 power 
-                        self.power = (data - 620.0) / 610.0
-                        if (abs(self.power) < .1):
-                                self.power = 0.0
-                        self.execute('motor', [self.bias, self.power])
-                elif (data < 2480):
-                        self.bias = (data - 1860.0) / 610.0
-                        if (abs(self.bias) < .1):
-                                self.bias = 0.0
-                        self.execute('motor', [self.bias, self.power])
-                        print self.bias
-                elif (data == 2491):
-                        self.execute('door', 0)
-                elif (data == 2511):
-                        self.execute('door', 1)
-                elif (data == 2531):
-                        self.execute('arm', 1)
-                elif (data == 2551):
-                        self.execute('arm', 0)
-                elif (data == 2601):
-                        self.robot.activateIR()
-                else:
-                        print 'wtf, man'
+			self.power = (data - 620.0) / 610.0
+			if (abs(self.power) < .1):
+				self.power = 0.0
+			print self.power
+			self.execute('motor', [self.bias, self.power])
+		elif (data < 2480):
+			self.bias = (data - 1860.0) / 610.0
+			print self.bias
+			if (abs(self.bias) < .1):
+				self.bias = 0.0
+			self.execute('motor', [self.bias, self.power])
+		elif (data == 2491):
+			self.execute('door', 0)
+		elif (data == 2511):
+			self.execute('door', 1)
+		elif (data == 2531):
+			self.execute('arm', 1)
+		elif (data == 2551):
+			self.execute('arm', 0)
+		elif (data == 2601):
+			self.robot.activateIR()
+		else:
+			print 'wtf, man'
 
 	def execute(self, inputType, value):
 		#for motor, value=[bias,power]
