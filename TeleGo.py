@@ -1,10 +1,11 @@
 from TeleopController import *
 
-bot = RobotController.init()
-tele = TeleopController.init(bot)
+bot = RobotController()
+tele = TeleopController(bot)
 
 try:
-	tele.receive()
+	while(1):
+		tele.receive()
 
 except KeyboardInterrupt:
 	tele.stopAll()
