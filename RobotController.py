@@ -64,8 +64,20 @@ class Servo:
 		#TODO this might be impossible....
 		pass
 
+class InfraLed:
+	def __init__(self, pin):
+		self.led = mraa.Gpio(pin)
+		self.led.dir(mraa.DIR_OUT)
+		self.led.write(0)
+
+	def activate(self):
+		self.led.write(1)
+		time.sleep(100)
+		self.led.write(0)
+
 class RobotController:
 	def __init__(self):
+		self.ir = InfraLed(7)
 		# set up the motors
 		self.left = Motor(3, 11, 12)
 		self.right = Motor(9, 8, 13)
@@ -136,6 +148,5 @@ class RobotController:
 		pass
 
 	def activateIR(self):
-		# turn on IR to activate dispensers
-		#TODO
-		pass
+		self.ir.activate()
+		
