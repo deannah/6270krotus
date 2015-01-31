@@ -108,15 +108,15 @@ class RobotController:
 
 	def setLeftMotor(self,value):
 		if value > 0:
-			self.left.forward(value)
+			self.left.forward(.8 * value)
 		else:
-			self.left.backward(-value)
+			self.left.backward(-.8 * value)
 
 	def setRightMotor(self,value):
 		if value > 0:
-			self.right.forward(1.25 * value)
+			self.right.forward(value)
 		else:
-			self.right.backward(-1.25 * value)
+			self.right.backward(-value)
 
 	def stop(self):
 		self.left.stop()
