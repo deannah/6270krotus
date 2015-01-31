@@ -18,7 +18,7 @@ class TeleopController:
 		print data
 		if (data < 1240):		#2470 to 1250 bias, hopefully 10 to 1230 power 
 			self.power = (data - 450.0) / 610.0
-			if (abs(self.power) < .2):
+			if (abs(self.power) < .4):
 				self.power = 0.0
 			print self.power
 			self.execute('motor', [self.bias, self.power])
