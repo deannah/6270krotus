@@ -4,7 +4,7 @@ bot = RobotController.init()
 tele = TeleopController.init(bot)
 quit = False
 
-while !quit:
+while (quit == False):
 	tele.receive()
 
 except KeyboardInterrupt:
