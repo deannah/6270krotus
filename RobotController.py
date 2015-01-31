@@ -108,9 +108,9 @@ class RobotController:
 
 	def setLeftMotor(self,value):
 		if value > 0:
-			self.left.forward(.8 * value)
+			self.left.forward(value)
 		else:
-			self.left.backward(-.8 * value)
+			self.left.backward(-value)
 
 	def setRightMotor(self,value):
 		if value > 0:
