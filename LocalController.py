@@ -47,8 +47,8 @@ class LocalController:
 			bias=0.0
 		else:
 			bias=0.5
-		setRightMotor(bias+power)
-		setLeftMotor(bias-power)
+		self.robot.setRightMotor(bias+power)
+		self.robot.setLeftMotor(bias-power)
 		(myX,myY)=self.model.getPosition()
 		dist=sqrt((goal[0]-myX)**2+(goal[1]-myY)**2)
 		if(dist > 1):
@@ -66,8 +66,8 @@ class LocalController:
 		time=getTime()
 		power=pid.update(-cross,time)
 		if (abs(diff)>0.1):
-			setLeftMotor(power);		#TODO
-			setRightMotor(-power); 	#TODO
+			self.robot.setLeftMotor(power);		#TODO
+			self.robot.setRightMotor(-power); 	#TODO
 			self.turnTo(angle)
 	def collect(self):
 		# Complete the action of collecting ping pong balls
