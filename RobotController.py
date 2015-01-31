@@ -84,17 +84,27 @@ class RobotController:
 		self.left.backward(.4)
 		self.right.backward(.4)
 
-	def setRightMotor(self,value):
-		if value > 0:
-			self.right.forward(value)
+	def setMotors(self,bias,power):
+		if bias+power > 0:
+			self.right.forward(bias+power)
 		else:
-			self.right.backward(-value)
+			self.right.backward(-bias-power)
+		if bias-power > 0:
+			self.left.forward(bias-power)
+		else:
+			self.left.backward(power-bias)
 
 	def setLeftMotor(self,value):
 		if value > 0:
 			self.left.forward(value)
 		else:
 			self.left.backward(-value)
+
+	def setRightMotor(self,value):
+		if value > 0:
+			self.right.forward(value)
+		else:
+			self.right.backward(-value)
 
 	def stop(self):
 		self.left.stop()
