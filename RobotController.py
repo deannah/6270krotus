@@ -43,7 +43,6 @@ class Servo:
 
 	def rotateLow(self):
 		#this assumes it is already high...
-		# might just want one rotate function? TODO
 		self.s.enable(True)
 		for i in range(1400, 700, -100):
 			self.s.pulsewidth_us(i)
@@ -64,7 +63,7 @@ class Servo:
 		step = 100
 		if (current>desired):
 			step*=-1
-		for i in range(current, desired, step):
+		for i in range(current, desired+step, step):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
 		self.enable(False)
@@ -148,7 +147,8 @@ class RobotController:
 		# rotate servo to raise arm to put balls in box
 		if (self.armUp == False):
 			self.armUp = True
-			self.arm.rotateHigh()
+			#self.arm.rotateHigh()
+			self.arm.rotate(800, 1400)
 		else:
 			pass
 
@@ -156,7 +156,8 @@ class RobotController:
 		# rotate servo to lower arm to catch balls.
 		if (self.armUp == True):
 			self.armUp = False
-			self.arm.rotateLow()
+			#self.arm.rotateLow()
+			self.arm.rotate(1400, 800)
 		else:
 			pass
 
