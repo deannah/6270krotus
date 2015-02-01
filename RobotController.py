@@ -57,12 +57,17 @@ class Servo:
 			time.sleep(.05)
 		self.s.enable(False) #TODO prolly shouldn't here...
 
-	def rotate(self, value):
+	def rotate(self, current, desired):
+		# rotates servo from current location to desired location
+		#current and desired should ideally be multiples of 100
 		self.s.enable(True)
-		# probably need to find current theta?
-		# basically mimic the above but from current to value
-		#TODO this might be impossible....
-		pass
+		step = 100
+		if (current>desired):
+			step*=-1
+		for i in range(current, desired, step):
+			self.s.pulsewidth_us(i)
+			time.sleep(.05)
+		self.enable(False)
 
 class InfraLed:
 	def __init__(self, pin):
@@ -82,8 +87,8 @@ class RobotController:
 		self.left = Motor(3, 11, 12)
 		self.right = Motor(9, 8, 13)
 		# set up the servos
-		#self.arm = Servo(5) #TODO did I switch these pins?
-		#self.door = Servo(6)
+		self.arm = Servo(6)
+		#self.door = Servo(5)
 
 	def driveForward(self):
 		#This and driveBackward are probably unnecessary
@@ -139,13 +144,11 @@ class RobotController:
 
 	def raiseArm(self):
 		# rotate servo to raise arm to put balls in box
-		#TODO
-		pass
+		self.arm.rotateHigh()
 
 	def lowerArm(self):
 		# rotate servo to lower arm to catch balls.
-		#TODO
-		pass
+		self.arm.rotateLow()
 
 	def activateIR(self):
 		self.ir.activate()
