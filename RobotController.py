@@ -45,14 +45,14 @@ class Servo:
 		#this assumes it is already high...
 		# might just want one rotate function? TODO
 		self.s.enable(True)
-		for i in range(2100, 700, -100):
+		for i in range(1400, 700, -100):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
 		self.s.enable(False) #TODO mmmm should I disable now??
 
 	def rotateHigh(self):
 		self.s.enable(True)
-		for i in range(800, 2300, 100):
+		for i in range(800, 1500, 100):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
 		self.s.enable(False) #TODO prolly shouldn't here...
