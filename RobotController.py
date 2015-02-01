@@ -89,7 +89,7 @@ class RobotController:
 		# set up the servos
 		self.arm = Servo(6)
 		#self.door = Servo(5)
-		self.arming = False
+		self.armUp = False
 		#self.dooring = False
 
 	def driveForward(self):
@@ -146,17 +146,19 @@ class RobotController:
 
 	def raiseArm(self):
 		# rotate servo to raise arm to put balls in box
-		if (self.arming == False):
-			self.arming = True
+		if (self.armUp == False):
+			self.armUp = True
 			self.arm.rotateHigh()
-			self.arming = False
+		else:
+			pass
 
 	def lowerArm(self):
 		# rotate servo to lower arm to catch balls.
-		if (self.arming == False):
-			self.arming = True
+		if (self.armUp == True):
+			self.armUp = False
 			self.arm.rotateLow()
-			self.arming = False
+		else:
+			pass
 
 	def activateIR(self):
 		self.ir.activate()
