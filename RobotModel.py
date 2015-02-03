@@ -14,6 +14,7 @@ Todo list:
 
 """
 import mraa
+import socket
 
 # The bump sensors are really derpy, these functions get called way more often than they should.
 def rightbump(args):
@@ -39,6 +40,17 @@ class RobotModel:
 		self.right.isr(mraa.EDGE_RISING, rightbump, rightbump)
 		self.time = 0
 
+		#Tentatively (This will not work because we have to send a tcp request, 
+		#I think, but hey, whatevs. adapted loosely from localhost udp server code):
+		#self.port = 5000
+		#self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		#self.host = ???
+		#self.s.connect((self.host, self.port))
+
+		#self.msgLen = ??? (in bytes)
+
+		# ^^^ Maybe put this in getVPSdata, initialize new connection every time... ^^^
+
 	def getGyroData(self):
 		# pin A2
 		# Normal ~500, down to 0 when turn left, 1000 turn right
@@ -50,6 +62,21 @@ class RobotModel:
 		# team #, x, y, theta, and time, it's a function we'll call
 		# this'll be a thread running in the background, ?
 		#TODO
+
+
+		#Tentatively:
+
+		#stuff = []
+		#bytes_recd = 0
+		#while (bytes_recd < self.msgLen):
+		#	thing = self.s.recv(min(self.msgLen - bytes_recd, 2048))
+		#if (thing == ""):
+		#	raise RuntimeError("socket connection broken")
+		#stuff.append(thing)
+		#bytes_recd += len(thing)
+
+		#Then do some bs to the message contents
+
 		x = 0.0
 		y = 0.0
 		theta = 0.0
