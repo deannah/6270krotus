@@ -76,7 +76,7 @@ class InfraLed:
 
 	def activate(self):
 		self.led.write(1)
-		time.sleep(.5)
+		time.sleep(.1)
 		self.led.write(0)
 
 class RobotController:
