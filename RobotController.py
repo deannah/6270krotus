@@ -163,5 +163,8 @@ class RobotController:
 			pass
 
 	def activateIR(self):
-		self.ir.activate()
+		self.ir.activateIR()
+
+	def deactivateIR(self):
+		self.ir.deactivateIR()
 		
