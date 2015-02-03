@@ -38,6 +38,8 @@ class TeleopController:
 			self.execute('arm', 0)
 		elif (data == 2601):
 			self.execute('ir', 0)
+		elif (data == 2600):
+			self.execute('ir', 1)
 		else:
 			print 'wtf, man'
 
@@ -60,7 +62,10 @@ class TeleopController:
 			else:
 				print 'whutisarm??'
 		elif inputType=='ir':
-			self.robot.activateIR()
+			if (value == 0):
+				self.robot.activateIR()
+			else:
+				self.robot.deactivateIR()
 
 	def stopAll(self): #TODO
 		self.robot.stop()

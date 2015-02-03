@@ -74,9 +74,10 @@ class InfraLed:
 		self.led.dir(mraa.DIR_OUT)
 		self.led.write(0)
 
-	def activate(self):
+	def activateIR(self):
 		self.led.write(1)
-		time.sleep(.1)
+
+	def deactivateIR(self):
 		self.led.write(0)
 
 class RobotController:
