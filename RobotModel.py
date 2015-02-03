@@ -70,10 +70,10 @@ class RobotModel:
 		#bytes_recd = 0
 		#while (bytes_recd < self.msgLen):
 		#	thing = self.s.recv(min(self.msgLen - bytes_recd, 2048))
-		#if (thing == ""):
-		#	raise RuntimeError("socket connection broken")
-		#stuff.append(thing)
-		#bytes_recd += len(thing)
+		#	if (thing == ""):
+		#		raise RuntimeError("socket connection broken")
+		#	stuff.append(thing)
+		#	bytes_recd += len(thing)
 
 		#Then do some bs to the message contents
 
