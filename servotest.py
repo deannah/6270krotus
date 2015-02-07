@@ -9,8 +9,9 @@ import time
 robot = RobotController()
 
 try:
-	robot.openDoor()
-	time.sleep(2)
-	robot.closeDoor()
+	robot.operateArm()
+	time.sleep(1)
+	robot.operateDoor()
 except KeyboardInterrupt:
 	robot.closeDoor()
+	robot.lowerArm()

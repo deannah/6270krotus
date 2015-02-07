@@ -61,6 +61,8 @@ class Servo:
 		#current and desired should ideally be multiples of 100
 		self.s.enable(True)
 		step = 100
+		if (abs(current-desired)<=150):
+			step = 25
 		if (current>desired):
 			step*=-1
 		for i in range(current, desired+step, step):
@@ -136,11 +138,23 @@ class RobotController:
 		self.left.off()
 		self.right.off()
 
+	def operateDoor(self):
+		# opens and closes door with 2 second pause
+		robot.openDoor()
+		time.sleep(2)
+		robot.closeDoor()
+
+	def operateArm(self):
+		#raises and lowers arm with 2 second pause
+		robot.raiseArm()
+		time.sleep(2)
+		robot.lowerArm()
+
 	def openDoor(self):
 		# rotate servo to open door, releasing balls.
 		if (!self.doorOpen):
 			self.doorOpen = True
-			self.door.rotate(800, 850)
+			self.door.rotate(650, 800)
 		else:
 			pass
 
@@ -148,7 +162,7 @@ class RobotController:
 		# rotate servo to close door.
 		if (self.doorOpen):
 			self.doorOpen = False
-			self.door.rotate(850, 800)
+			self.door.rotate(800, 650)
 		else:
 			pass
 
