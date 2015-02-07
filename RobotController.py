@@ -140,19 +140,19 @@ class RobotController:
 
 	def operateDoor(self):
 		# opens and closes door with 2 second pause
-		robot.openDoor()
+		self.openDoor()
 		time.sleep(2)
-		robot.closeDoor()
+		self.closeDoor()
 
 	def operateArm(self):
 		#raises and lowers arm with 2 second pause
-		robot.raiseArm()
+		self.raiseArm()
 		time.sleep(2)
-		robot.lowerArm()
+		self.lowerArm()
 
 	def openDoor(self):
 		# rotate servo to open door, releasing balls.
-		if (!self.doorOpen):
+		if (not self.doorOpen):
 			self.doorOpen = True
 			self.door.rotate(650, 800)
 		else:
