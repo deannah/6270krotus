@@ -88,9 +88,11 @@ class RobotController:
 		self.right = Motor(9, 8, 13)
 		# set up the servos
 		self.arm = Servo(6)
-		#self.door = Servo(5)
+		self.door = Servo(5)
+		# These bools are necessary to prevent repeated calls
+		# that will freak out robot, mainly from Xbox controller
 		self.armUp = False
-		#self.dooring = False
+		self.doorOpen = False
 
 	def driveForward(self):
 		#This and driveBackward are probably unnecessary
@@ -136,13 +138,19 @@ class RobotController:
 
 	def openDoor(self):
 		# rotate servo to open door, releasing balls.
-		#TODO
-		pass
+		if (!self.doorOpen):
+			self.doorOpen = True
+			self.door.rotate(800, 850)
+		else:
+			pass
 
 	def closeDoor(self):
 		# rotate servo to close door.
-		#TODO
-		pass
+		if (self.doorOpen):
+			self.doorOpen = False
+			self.door.rotate(850, 800)
+		else:
+			pass
 
 	def raiseArm(self):
 		# rotate servo to raise arm to put balls in box
