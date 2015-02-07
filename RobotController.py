@@ -139,15 +139,15 @@ class RobotController:
 		self.right.off()
 
 	def operateDoor(self):
-		# opens and closes door with 2 second pause
+		# opens and closes door with 1 second pause
 		self.openDoor()
-		time.sleep(2)
+		time.sleep(1)
 		self.closeDoor()
 
 	def operateArm(self):
-		#raises and lowers arm with 2 second pause
+		#raises and lowers arm with 1 second pause
 		self.raiseArm()
-		time.sleep(2)
+		time.sleep(1)
 		self.lowerArm()
 
 	def openDoor(self):
