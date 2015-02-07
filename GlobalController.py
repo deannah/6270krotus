@@ -9,7 +9,7 @@ Keeps track of list of tasks. Uses LocalController to actually achieve tasks. Ap
 hmmm might want a separate FieldModel...
 """
 from LocalController import *
-from RRT import *
+#from RRT import *
 
 class GlobalController:
 	def __init__(self, robotModel, fieldModel):

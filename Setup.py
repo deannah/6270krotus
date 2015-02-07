@@ -5,7 +5,8 @@ from RobotModel import *
 from GlobalController import *
 
 robotModel = RobotModel()
-globalController = GlobalController(robotModel)
+fieldModel = FieldModel()
+globalController = GlobalController(robotModel, fieldModel)
 
 # Time to compete!
 
