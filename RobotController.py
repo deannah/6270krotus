@@ -168,7 +168,7 @@ class RobotController:
 		# rotate servo to open door, releasing balls.
 		if (not self.doorOpen):
 			self.doorOpen = True
-			self.door.rotate(650, 800)
+			self.door.rotate(650, 900)
 		else:
 			pass
 
@@ -176,7 +176,7 @@ class RobotController:
 		# rotate servo to close door.
 		if (self.doorOpen):
 			self.doorOpen = False
-			self.door.rotate(800, 650)
+			self.door.rotate(900, 650)
 		else:
 			pass
 
