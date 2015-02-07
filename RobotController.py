@@ -66,7 +66,7 @@ class Servo:
 		for i in range(current, desired+step, step):
 			self.s.pulsewidth_us(i)
 			time.sleep(.05)
-		self.enable(False)
+		self.s.enable(False)
 
 class InfraLed:
 	def __init__(self, pin):
@@ -149,7 +149,7 @@ class RobotController:
 		if (self.armUp == False):
 			self.armUp = True
 			#self.arm.rotateHigh()
-			self.arm.rotate(800, 1400)
+			self.arm.rotate(800, 1100)
 		else:
 			pass
 
@@ -158,7 +158,7 @@ class RobotController:
 		if (self.armUp == True):
 			self.armUp = False
 			#self.arm.rotateLow()
-			self.arm.rotate(1400, 800)
+			self.arm.rotate(1100, 800)
 		else:
 			pass
 
