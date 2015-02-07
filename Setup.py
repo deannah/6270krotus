@@ -3,6 +3,7 @@ This sets everything up for the robot. Initializes model and GlobalController, a
 """
 from RobotModel import *
 from GlobalController import *
+from FieldModel import *
 
 robotModel = RobotModel()
 fieldModel = FieldModel()
