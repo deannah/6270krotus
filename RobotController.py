@@ -107,6 +107,20 @@ class RobotController:
 		self.left.backward(.4)
 		self.right.backward(.4)
 
+	def drive(self, value, correction):
+		# if correction is 0, both motors set to value.
+		# correction negative, robot is turned left
+		leftPow = value + correction
+		rightPow = value - correction
+		if leftPow > 0:
+			self.left.forward(leftPow)
+		else:
+			self.left.backward(leftPow)
+		if rightPow > 0:
+			self.right.forward(rightPow)
+		else:
+			self.right.backward(rightPow)
+
 	def setMotors(self,bias,power):
 		if bias+power > 0:
 			self.right.forward(bias+power)
