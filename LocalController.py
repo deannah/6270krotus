@@ -6,15 +6,8 @@ This local controller completes individual tasks:
 - activate IR sensor
 
 Gets position/etc estimates from RobotModel
-
-Eventually implement some modularity. Especially want separate code
-for motors and servos and things, but for now it can go in here I suppose.
-
-Maybe thinking... AbstractLocalController with NavigateController and CollectController etc, GlobalController creates instance of wanted LocalController which operates until its task is complete...
-
-On second thought, maybe I won't bother doing an abstract class.
 """
-from pid import *
+#from pid import *
 from RobotController import RobotController
 import time
 
@@ -32,7 +25,7 @@ class LocalController:
 			time.sleep(.1)
 			seconds-=.1
 			correction = .001*(500-self.model.getGyroData())
-
+"""
 	def navigate(self, goal):
 		# use default pid. I'm assuming this is how GlobalController
 		# will wind up calling navigate.
@@ -93,7 +86,7 @@ class LocalController:
 		# Really just involves operating servo2
 		self.robot.openDoor()
 		#TODO some kind of waiting
-		self.robot.closeDoor()
+		self.robot.closeDoor() """
 
 """class AbstractLocalController:
 	def __init__(self, model):
