@@ -17,19 +17,19 @@ class FieldModel:
 		self.width = 0
 		self.height = 0
 		# In theory grid will keep track of whether point is passable or not.
-		self.grid = [[True]*width]*height
+		self.grid = [[True]*self.width]*self.height
 
 	def updatePosition(self, position, clear):
 		# clear is boolean, False if not passable, True if passable
 		self.grid[position[0]][position[1]] = clear
 
-	def isPassable(self, position)
+	def isPassable(self, position):
 		# returns bool whether position is passable
 		#TODO should I account for robot size here or elsewhere? Lol.
 		return self.grid[position[0]][position[1]]
 
-	def getHeight(self)
+	def getHeight(self):
 		return self.height
 
-	def getWidth(self)
+	def getWidth(self):
 		return self.width
