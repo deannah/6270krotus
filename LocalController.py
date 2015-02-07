@@ -22,8 +22,8 @@ class LocalController:
 		correction = 0.0
 		while seconds > 0:
 			self.robot.drive(power, correction)
-			time.sleep(.1)
-			seconds-=.1
+			time.sleep(.5)
+			seconds-=.5
 			correction = .001*(500-self.model.getGyroData())
 """
 	def navigate(self, goal):

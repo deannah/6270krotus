@@ -11,6 +11,6 @@ globalController = GlobalController(robotModel, fieldModel)
 
 # Time to compete!
 
-while True:
+#while True:
 	# In case it manages to get through all the tasks, keep repeating
-	globalController.execute()
+globalController.execute()

@@ -25,7 +25,7 @@ class GlobalController:
 		# Step one, just drive straight.
 
 		try:
-			seconds = 20.0
+			seconds = 5.0
 			self.localController.driveStraight(seconds)
 		except KeyboardInterrupt:
 			self.localController.robot.off()
