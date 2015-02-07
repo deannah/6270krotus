@@ -18,9 +18,18 @@ class GlobalController:
 		self.localController = LocalController(robotModel)
 
 	def execute(self):
-		# Execute called when competition begins.
-		#TODO this prolly needs a time limit or some kind of stop condition?
-		#prolly timer here and then loop it from setup?
+		# this is the brains of the autonomy. It goes through
+		# all of the steps of the competition.
+		#TODO this prolly needs a time limit?
+
+		# Step one, just drive straight.
+
+		try:
+			seconds = 20.0
+			self.localController.driveStraight(seconds)
+		except KeyboardInterrupt:
+			self.localController.robot.off()
+		"""
 		# navigate to closest dispenser
 			#find closest dispenser
 		dispenser = (0, 0, 0) #assume dispenser is accurate, TODO
@@ -38,3 +47,4 @@ class GlobalController:
 			self.localController.navigate(point)
 		# release balls
 		localController.release()
+		"""

@@ -16,11 +16,22 @@ On second thought, maybe I won't bother doing an abstract class.
 """
 from pid import *
 from RobotController import RobotController
+import time
 
 class LocalController:
 	def __init__(self, model):
 		self.model = model
 		self.robot = RobotController()
+
+	def driveStraight(self, seconds):
+		# seconds is number of seconds it should drive straight for.
+		power = .4
+		correction = 0.0
+		while seconds > 0:
+			self.robot.drive(power, correction)
+			time.sleep(.1)
+			seconds-=.1
+			correction = .001*(500-self.model.getGyroData())
 
 	def navigate(self, goal):
 		# use default pid. I'm assuming this is how GlobalController

@@ -1,5 +1,5 @@
 """
-This sets everything up for the robot. Initializes model and GlobalController, then waits for start and begins the robot's competition code ( globalController.execute() )
+This sets everything up for the robot. Initializes model and GlobalController, and then begins the robot's competition code ( globalController.execute() )
 """
 from RobotModel import *
 from GlobalController import *
@@ -7,10 +7,8 @@ from GlobalController import *
 robotModel = RobotModel()
 globalController = GlobalController(robotModel)
 
-# while VPS data is nonexistant, wait
-while not robotModel.getVPSdata():
-	#basically wait
 # Time to compete!
+
 while True:
-	# I'm assuming we'll just keep repeating the loop until we run out of time.
+	# In case it manages to get through all the tasks, keep repeating
 	globalController.execute()
