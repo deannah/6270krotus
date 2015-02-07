@@ -35,9 +35,9 @@ class RobotModel:
 		self.velocity = 0.0
 		self.gyro = mraa.Aio(2)
 		self.left = mraa.Gpio(2)
-		self.left.isr(mraa.EDGE_RISING, leftbump, leftbump)
+		#self.left.isr(mraa.EDGE_RISING, leftbump, leftbump)
 		self.right = mraa.Gpio(4)
-		self.right.isr(mraa.EDGE_RISING, rightbump, rightbump)
+		#self.right.isr(mraa.EDGE_RISING, rightbump, rightbump)
 		self.time = 0
 
 		#Tentatively (This will not work because we have to send a tcp request, 
@@ -55,7 +55,7 @@ class RobotModel:
 		# pin A2
 		# Normal ~500, down to 0 when turn left, 1000 turn right
 		value = self.gyro.read()
-		print "Gyro reads: ", str(value)
+		#print "Gyro reads: ", str(value)
 		return value
 
 	def getVPSdata(self):
