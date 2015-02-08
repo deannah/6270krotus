@@ -123,9 +123,9 @@ class RobotController:
 
 	def setMotors(self,bias,power):
 		if bias+power > 0:
-			self.right.forward( ( bias * 1.5 ) +power)
+			self.right.forward( ( bias * .75 ) +power)
 		else:
-			self.right.backward( ( -1.5 * bias ) -power)
+			self.right.backward( ( -.75 * bias ) -power)
 		if bias-power > 0:
 			self.left.forward(bias-power)
 		else:
